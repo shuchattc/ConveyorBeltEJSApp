@@ -1,0 +1,135 @@
+<<<<<<< HEAD
+const express = require('express');
+const router = express.Router();
+const CatchAsync = require('../utils/catchAsync');
+const ExpressError = require('../utils/ExpressError');
+const users = require('../controllers/users');
+const {isLoggedIn} = require('../middleware');
+const passport = require('passport');
+const User = require('../models/user');
+
+module.exports.getRegisterForm = async(req,res) => { //shows registration form page
+    res.render('users/register');
+};
+
+module.exports.registerUser = async (req, res, next) => {
+    try {
+        const { email, username, password } = req.body;
+        const admin = req.body.admin === "Boolean";
+        const user = new User({ email, username, admin });
+        console.log("NEW USER +++ ", user);
+        const registeredUser = await User.register(user, password);
+        console.log(registeredUser);
+        req.login(registeredUser, err => {
+            if (err) return next(err);
+            console.log(registeredUser);
+            req.flash('success', 'Welcome to Sushi App!', registeredUser.username);
+            res.redirect('/home');
+        })
+    } catch (e) {
+        req.flash('error', e.message);
+        res.redirect('/register');
+    }
+};
+
+module.exports.getLoginPage = (req,res) =>{
+    res.render('users/login');
+};
+
+module.exports.login = (req,res) => { 
+    req.flash('success', 'Welcome back!');
+    const redirectUrl = req.session.returnTo || '/home';
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
+};
+
+module.exports.logout = (req,res) => {
+    req.logout(function(err){
+        if(err){
+            return next(err);
+        }
+        req.flash('success', 'You logged out');
+        res.redirect('/home');
+    });
+}
+
+||||||| empty tree
+=======
+const express = require('express');
+const router = express.Router();
+const CatchAsync = require('../utils/catchAsync');
+const ExpressError = require('../utils/ExpressError');
+const users = require('../controllers/users');
+const {isLoggedIn} = require('../middleware');
+const passport = require('passport');
+const User = require('../models/user');
+
+module.exports.getRegisterForm = async(req,res) => { //shows registration form page
+    res.render('users/register');
+};
+
+module.exports.registerUser = async (req, res, next) => {
+    try {
+        const { email, username, password } = req.body;
+        const admin = req.body.admin === "Boolean";
+        const user = new User({ email, username, admin });
+        console.log("NEW USER +++ ", user);
+        const registeredUser = await User.register(user, password);
+        console.log(registeredUser);
+        req.login(registeredUser, err => {
+            if (err) return next(err);
+            console.log(registeredUser);
+            req.flash('success', 'Welcome to Sushi App!', registeredUser.username);
+            res.redirect('/home');
+        })
+    } catch (e) {
+        req.flash('error', e.message);
+        res.redirect('/register');
+    }
+};
+
+module.exports.getLoginPage = (req,res) =>{
+    res.render('users/login');
+};
+
+module.exports.login = (req,res) => { 
+    req.flash('success', 'Welcome back!');
+    const redirectUrl = req.session.returnTo || '/home';
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
+};
+
+module.exports.loginGuest =  async (req, res, next) => {
+    try {
+        const guestUser = await User.findOne({ username: 'guest' });
+        if (!guestUser) {
+            return res.status(404).send('Guest user not found');
+        }
+
+        req.body.username = 'guest';
+        req.body.password = 'guestpassword'; // same as seeded
+        passport.authenticate('local', (err, user, info) => {
+            if (err) return next(err);
+            if (!user) return res.redirect('/'); // or show error
+
+            req.logIn(user, (err) => {
+                if (err) return next(err);
+                return res.redirect('/home'); // or wherever
+            });
+        })(req, res, next);
+
+    } catch (err) {
+        next(err);
+    }
+}
+
+module.exports.logout = (req,res) => {
+    req.logout(function(err){
+        if(err){
+            return next(err);
+        }
+        req.flash('success', 'You logged out');
+        res.redirect('/');
+    });
+}
+>>>>>>> 970cf6f8706313214d0ca9bc24bd26c288d5e916

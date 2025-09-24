@@ -1,0 +1,76 @@
+<<<<<<< HEAD
+<%- include('../partials/boilerplate')%>
+<form action="/product/<%=thisFoodItem._id%>?_method=PUT" method="post">
+            <div class="m-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="FoodItem[title]" value="<%=thisFoodItem.title%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="m-3">
+                <label class="form-label" for="title">Description</label>
+                <input class="form-control" type="text" id="title" name="FoodItem[description]" value="<%=thisFoodItem.description%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="m-3">
+                <label class="form-label" for="title">Price</label>
+                <input class="form-control" type="text" id="title" name="FoodItem[price]" value="<%=thisFoodItem.price%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="m-3">
+                <button class="btn btn-success">Submit</button>
+            </div>
+</form>
+
+<form action="/product/<%=thisFoodItem._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-sm btn-danger m-3">Delete This Item</button>
+</form>
+
+
+
+
+<%- include('../partials/footer')%>
+||||||| empty tree
+=======
+<%- include('../partials/boilerplate')%>
+<form action="/product/<%=thisFoodItem._id%>?_method=PUT" method="post">
+            <div class="m-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="FoodItem[title]" value="<%=thisFoodItem.title%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="m-3">
+                <label class="form-label" for="title">Description</label>
+                <input class="form-control" type="text" id="title" name="FoodItem[description]" value="<%=thisFoodItem.description%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="m-3">
+                <label class="form-label" for="title">Price</label>
+                <input class="form-control" type="text" id="title" name="FoodItem[price]" value="<%=thisFoodItem.price%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="m-3">
+                <button class="btn btn-success">Submit</button>
+            </div>
+</form>
+
+<form action="/product/<%=thisFoodItem._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-sm btn-danger m-3">Delete This Item</button>
+</form>
+
+
+
+
+<%- include('../partials/footer')%>
+>>>>>>> 970cf6f8706313214d0ca9bc24bd26c288d5e916

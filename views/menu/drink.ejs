@@ -1,0 +1,86 @@
+<<<<<<< HEAD
+<%- include('../partials/boilerplate')%>
+
+
+<% for(let i = 0; i < drink.length; i++){ %>
+  <div class="btn-group" role="group" aria-label="Example"></div>
+<button type="button" class="btn btn-primary m-3" data-toggle="modal" data-target="#modal<%= + i %>"><%=drink[i].title%></button>
+<% if(currentUser && currentUser.admin){ %>
+  <a href="/product/edit/<%=drink[i].id%>"><button type="button" class="btn btn-group-sm btn-secondary m-3">Edit</button></a>
+<%}%>
+  </div>
+
+
+<div class="modal fade" id="modal<%= + i %>" tabindex="-1" role="dialog" aria-labelledby="<%=drink[i].id%>" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form action="/product/<%=drink[i]._id%>/kitchen" method="POST">
+          <img src="<%=drink[i].image%>" alt="" class="w-50">
+        <h2 class="modal-title" id="<%=drink[i].title%>" name="<%=drink[i].title%>" value="<%=drink[i].title%>"><%=drink[i].title%></h2>
+        <div class="modal-body">
+          <h3><%=drink[i].description%></h3>
+          <h2>Price: $<%=drink[i].price%></h2>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="qty" id="qty" value=1 checked>
+                <label class="form-check-label" for="qty" name="qty">
+                    1
+                </label>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Order</button>
+        </div>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<%- include('../partials/footer')%>
+||||||| empty tree
+=======
+<%- include('../partials/boilerplate')%>
+
+
+<% for(let i = 0; i < drink.length; i++){ %>
+  <div class="btn-group" role="group" aria-label="Example"></div>
+<button type="button" class="btn btn-primary m-3" data-toggle="modal" data-target="#modal<%= + i %>"><%=drink[i].title%></button>
+<% if(currentUser && currentUser.admin){ %>
+  <a href="/product/edit/<%=drink[i].id%>"><button type="button" class="btn btn-group-sm btn-secondary m-3">Edit</button></a>
+<%}%>
+  </div>
+
+
+<div class="modal fade" id="modal<%= + i %>" tabindex="-1" role="dialog" aria-labelledby="<%=drink[i].id%>" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form action="/product/<%=drink[i]._id%>/kitchen" method="POST">
+          <img src="<%=drink[i].image%>" alt="" class="w-50">
+        <h2 class="modal-title" id="<%=drink[i].title%>" name="<%=drink[i].title%>" value="<%=drink[i].title%>"><%=drink[i].title%></h2>
+        <div class="modal-body">
+          <h3><%=drink[i].description%></h3>
+          <h2>Price: $<%=drink[i].price%></h2>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="qty" id="qty" value=1 checked>
+                <label class="form-check-label" for="qty" name="qty">
+                    1
+                </label>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Order</button>
+        </div>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<%- include('../partials/footer')%>
+>>>>>>> 970cf6f8706313214d0ca9bc24bd26c288d5e916

@@ -1,0 +1,42 @@
+<<<<<<< HEAD
+<%- include('./partials/boilerplate') %>
+
+<div class="m-3">Kitchen</div> 
+
+<% kitchenOrders.forEach(order => { %>
+  <ul class="list-group m-3">
+    <% order.items.forEach(item => { %>
+      <li class="list-group-item">
+        Qty: <%= item.qty %> - <%= item.food.title %>
+      </li>
+    <% }) %>
+  </ul>
+  <form action="/kitchen/<%= order._id %>?_method=DELETE" method="POST" class="m-3">
+    <button class="btn btn-sm btn-danger" id="remove-<%= order._id %>">Remove</button>
+  </form>
+  <hr>
+<% }) %>
+
+<%- include('./partials/footer') %>
+||||||| empty tree
+=======
+<%- include('./partials/boilerplate') %>
+
+<div class="m-3">Kitchen</div> 
+
+<% kitchenOrders.forEach(order => { %>
+  <ul class="list-group m-3">
+    <% order.items.forEach(item => { %>
+      <li class="list-group-item">
+        Qty: <%= item.qty %> - <%= item.food.title %>
+      </li>
+    <% }) %>
+  </ul>
+  <form action="/kitchen/<%= order._id %>?_method=DELETE" method="POST" class="m-3">
+    <button class="btn btn-sm btn-danger" id="remove-<%= order._id %>">Remove</button>
+  </form>
+  <hr>
+<% }) %>
+
+<%- include('./partials/footer') %>
+>>>>>>> 970cf6f8706313214d0ca9bc24bd26c288d5e916

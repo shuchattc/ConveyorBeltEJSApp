@@ -1,0 +1,84 @@
+<<<<<<< HEAD
+<%- include('./partials/boilerplate') %>
+
+<h1 class="mb-4">Checkout</h1>
+
+<% if (!cart || cart.items.length === 0) { %>
+  <div class="alert alert-warning">
+    Your cart is empty.
+  </div>
+<% } else { %>
+
+  <form action="/checkout/complete" method="POST">
+    <ul class="list-group mb-3">
+      <% cart.items.forEach((item, index) => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong><%= item.food.title %></strong>
+            <span class="text-muted">x <%= item.quantity %></span>
+          </div>
+          <span>$<%= (item.food.price * item.quantity).toFixed(2) %></span>
+        </li>
+      <% }) %>
+    </ul>
+
+    <!-- Optional: show total price -->
+    <div class="mb-3 d-flex justify-content-between">
+      <strong>Total:</strong>
+      <strong>
+        $<%= cart.items.reduce((sum, item) => sum + item.quantity * item.food.price, 0).toFixed(2) %>
+      </strong>
+    </div>
+
+    <!-- Submit button for completing checkout -->
+    <button type="submit" class="btn btn-danger btn-lg">
+      Place Order
+    </button>
+  </form>
+
+<% } %>
+
+<%- include('./partials/footer') %>
+||||||| empty tree
+=======
+<%- include('./partials/boilerplate') %>
+
+<h1 class="mb-4">Checkout</h1>
+
+<% if (!cart || cart.items.length === 0) { %>
+  <div class="alert alert-warning">
+    Your cart is empty.
+  </div>
+<% } else { %>
+
+  <form action="/checkout/complete" method="POST">
+    <ul class="list-group mb-3">
+      <% cart.items.forEach((item, index) => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong><%= item.food.title %></strong>
+            <span class="text-muted">x <%= item.quantity %></span>
+          </div>
+          <span>$<%= (item.food.price * item.quantity).toFixed(2) %></span>
+        </li>
+      <% }) %>
+    </ul>
+
+    <!-- Optional: show total price -->
+    <div class="mb-3 d-flex justify-content-between">
+      <strong>Total:</strong>
+      <strong>
+        $<%= cart.items.reduce((sum, item) => sum + item.quantity * item.food.price, 0).toFixed(2) %>
+      </strong>
+    </div>
+
+    <!-- Submit button for completing checkout -->
+    <button type="submit" class="btn btn-danger btn-lg">
+      Place Order
+    </button>
+  </form>
+
+<% } %>
+
+<%- include('./partials/footer') %>
+>>>>>>> 970cf6f8706313214d0ca9bc24bd26c288d5e916
