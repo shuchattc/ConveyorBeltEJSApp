@@ -1,2 +1,20 @@
-# ConveyorBeltEJSApp
-Express and Javascript App with full CRUD functionality to order food and mimic Conveyor Belt Sushi restaurants. Chefs/admins will be able to complete orders and update the menu, guests are able to sign up for an account and order food.
+# ConveyorBeltSushiECommereceApp
+This is an EJS/MongoDB application with full CRUD functionality, to mimic the tablets found at Conveyor Belt Sushi Restaurants, makes use of Bootstrap, EJS, Express, Javascript, and Node.JS.
+List of functionality:
+* Create administrator roles and new users, as well as login as guest if user doesn't want to create an account.
+* Create new orders and checkout total orders.
+* For administrators can create other admins and update the kitchen to delete already completed orders or add or delete menu items.
+
+![SplashScreen](splashscreen.PNG)
+
+![HomePage Guest](homepage_guest.PNG)
+
+![admin_register](admin_register.PNG)
+
+![user_register](user_register.PNG)
+
+![order_view](order_view.PNG)
+
+![kitchen_view](kitchen_view.PNG)
+
+![checkout](checkout_page.PNG)

@@ -1,0 +1,38 @@
+<%- include('../partials/boilerplate')%>
+<h5 class="m-3">NEW PRODUCT</h5>
+ <form action="/product" method="POST" novalidate class="validated-form m-3">
+            <div class="ml-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="food[title]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="ml-3">
+                <label class="form-label" for="desc">Desecription</label>
+                <input class="form-control" type="text" id="desc" name="food[description]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="ml-3">
+                <label class="form-label" for="price">Price</label>
+                <input class="form-control" type="text" id="price" name="food[price]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="ml-3">
+                <label for="select">Category</label>
+                <select class="form-control" id="select" name="food[category]" required>
+                    <option>sushi</option>
+                    <option>appetizer</option>
+                    <option>dessert</option>
+                    <option>drink</option>
+                </select>
+            </div>
+            <div class="m-3">
+                <button class="btn btn-success">Submit</button>
+            </div>
+</form>
+<%- include('../partials/footer')%>

@@ -1,0 +1,49 @@
+<%- include('../partials/boilerplate')%>
+
+<h2 class="text-center">Please note max 2 pieces of sushi per ordered plate.</h2>
+
+<% for(let i = 0; i < sushi.length; i++){ %>
+<div class="btn-group" role="group" aria-label="Example">
+  <button type="button" class="btn btn-group-sm btn-primary m-3" data-toggle="modal" data-target="#modal<%= + i %>"><%=sushi[i].title%></button>
+  <% if(currentUser && currentUser.admin){ %>
+  <a href="/product/edit/<%=sushi[i].id%>"><button type="button" class="btn btn-group-sm btn-secondary m-3">Edit</button></a>
+  <%}%>
+</div>
+
+
+<div class="modal fade" id="modal<%= + i %>" tabindex="-1" role="dialog" aria-labelledby="<%=sushi[i].id%>" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form action="/product/<%=sushi[i]._id%>/kitchen" method="POST">
+        <img src="<%=sushi[i].image%>" alt="" class="w-50">
+        <h2 class="modal-title" id="<%=sushi[i].title%>" name="<%=sushi[i].title%>" value="<%=sushi[i].title%>"><%=sushi[i].title%></h2>
+        <div class="modal-body">
+          <h3><%=sushi[i].description%></h3>
+          <h2>Price: $<%=sushi[i].price%></h2>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="qty" id="qty1" value=1 checked>
+                <label class="form-check-label" for="qty" name="qty">
+                    1
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="qty" id="qty2" value=2>
+                <label class="form-check-label" for="qty" name="qty">
+                    2
+                </label>
+                </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Order</button>
+        </div>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<%- include('../partials/footer')%>

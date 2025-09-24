@@ -1,0 +1,38 @@
+<%-include('../partials/boilerplate')%>
+
+<div class="container mt-auto">
+<h1>REGISTER</h1>
+<form action="/register" class="validated-form" method="POST" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-control" type="username" id="username" name="username" required>
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+                <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                Looks good!
+                </div>
+            </div>
+            <%if(currentUser && currentUser.admin){%>
+            <div class="form-group form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="admin" id='admin' value="Boolean">
+                <label class="form-check-label" for="admin">Is admin</label>
+            </div>
+            <%}%>
+            <button class="btn btn-success">Register</button>
+</form>
+</div>
+
+<%- include('../partials/footer')%>

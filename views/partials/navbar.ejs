@@ -1,0 +1,25 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand ml-3" href="/">Sushi App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse m-3" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <% if(currentUser){ %>
+            <li><a class="nav-link" href="/home">Home</a></li>
+            <li><a class="nav-link" href="/checkout">Checkout</a></li>
+          <%}%>
+        </ul>
+        <div class="navbar-nav ml-auto">
+          <%if (currentUser && currentUser.admin){%>
+            <li><a class="nav-link" href="/kitchen">Kitchen</a></li>
+            <li><a class="nav-link" href="/product/new">Add Menu Item</a></li>
+            <li><a class="nav-link" href="/register">Register</a>  
+              <li><a class="nav-link" href="/logout">Logout</a></li>        
+          <%}else if(currentUser){%>
+            <li><a class="nav-link" href="/logout">Logout</a></li>
+          <%}%>
+        </div>
+  </div>
+</nav>
