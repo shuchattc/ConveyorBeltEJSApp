@@ -52,7 +52,7 @@ module.exports.editMenuItem = async(req,res) => {
 module.exports.deleteMenuItem = async(req,res) => {
     const { id } = req.params;
     await FoodItem.findByIdAndDelete(id);
-    req.flash('success', 'Order sent.')
+    req.flash('success', 'Menu Item Deleted.')
     res.redirect('/home');
 };
 
