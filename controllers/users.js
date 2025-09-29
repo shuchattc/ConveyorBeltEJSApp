@@ -6,6 +6,7 @@ const users = require('../controllers/users');
 const {isLoggedIn} = require('../middleware');
 const passport = require('passport');
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 module.exports.getRegisterForm = async(req,res) => { //shows registration form page
     res.render('users/register');
@@ -42,29 +43,46 @@ module.exports.login = (req,res) => {
     res.redirect(redirectUrl);
 };
 
-module.exports.loginGuest =  async (req, res, next) => {
-    try {
-        const guestUser = await User.findOne({ username: 'guest' });
-        if (!guestUser) {
-            return res.status(404).send('Guest user not found');
-        }
+module.exports.loginGuest = async (req, res, next) => {
+  try {
+    // Generate unique username and email
+    const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+    const guestUsername = `guest_${randomSuffix}`;
+    const guestEmail = `guest_${randomSuffix}@example.com`;
 
-        req.body.username = 'guest';
-        req.body.password = 'guestpassword'; // same as seeded
-        passport.authenticate('local', (err, user, info) => {
-            if (err) return next(err);
-            if (!user) return res.redirect('/'); // or show error
+    const password = 'guestpassword';
 
-            req.logIn(user, (err) => {
-                if (err) return next(err);
-                return res.redirect('/home'); // or wherever
-            });
-        })(req, res, next);
+    // Create new guest account
+    const guestUser = new User({
+      username: guestUsername,
+      email: guestEmail,
+      role: 'guest',
+    });
 
-    } catch (err) {
-        next(err);
-    }
-}
+    // Use passport-local-mongoose helper to set the password properly
+    await User.register(guestUser, password);
+
+    // Inject credentials so passport.authenticate can log in
+    req.body.username = guestUsername;
+    req.body.password = password;
+
+    passport.authenticate('local', (err, user, info) => {
+      if (err) return next(err);
+      if (!user) {
+        console.error("Guest login failed:", info);
+        return res.redirect('/');
+      }
+
+      req.logIn(user, (err) => {
+        if (err) return next(err);
+        return res.redirect('/home');
+      });
+    })(req, res, next);
+
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports.logout = (req,res) => {
     req.logout(function(err){
