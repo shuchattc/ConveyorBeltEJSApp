@@ -10,7 +10,7 @@ const passport = require('passport');
 const localPassport = require('passport-local');
 const ExpressError = require('./utils/ExpressError');
 const env = require('dotenv').config();
-//const dbUrl = process.env.DATABASE_URL;
+const dbUrl = process.env.DATABASE_URL;
 const productRoutes = require('./routes/product');
 const kitchenRoutes = require('./routes/kitchen');
 const userRoutes = require('./routes/users');
@@ -21,7 +21,7 @@ if(process.env.Node_ENV !== 'production'){
     require('dotenv').config();
 }
 //mongodb://localhost:27017/sushiApp
-mongoose.connect('mongodb://localhost:27017/sushiApp', {});
+mongoose.connect(dbUrl, {});
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
