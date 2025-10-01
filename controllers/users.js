@@ -17,7 +17,7 @@ module.exports.registerUser = async (req, res, next) => {
         const { email, username, password } = req.body;
         const admin = req.body.admin === "Boolean";
         const user = new User({ email, username, admin });
-        const userRegex = /^[a-zA-Z0-9_]{4,}$/;
+        const userRegex = /^[a-zA-Z0-9_]{4,15}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const passRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
